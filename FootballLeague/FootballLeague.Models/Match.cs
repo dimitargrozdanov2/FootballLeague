@@ -16,5 +16,7 @@ namespace FootballLeague.Models
 
         public string Venue { get; set; }
 
+        public Outcome Outcome{get; set;}
+
     }
 }

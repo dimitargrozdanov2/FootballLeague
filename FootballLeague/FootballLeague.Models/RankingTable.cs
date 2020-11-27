@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FootballLeague.Models
 {
-    public class RankingTable
+    public class RankingTable : IEntity
     {
         public Guid Id { get; set; }
 

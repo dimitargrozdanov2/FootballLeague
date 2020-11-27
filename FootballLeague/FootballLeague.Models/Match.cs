@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FootballLeague.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FootballLeague.Models
 {
-    public class Match
+    public class Match : IEntity
     {
         public Guid Id { get; set; }
 

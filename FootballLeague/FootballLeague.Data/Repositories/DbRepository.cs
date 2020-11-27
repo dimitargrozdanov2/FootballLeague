@@ -1,5 +1,6 @@
 ﻿using FootballLeague.Data.Repositories.Contracts;
 using FootballLeague.Data.Utils;
+using FootballLeague.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

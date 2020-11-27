@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FootballLeague.Models
 {
-    public class Team
+    public class Team : IEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

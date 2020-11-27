@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FootballLeague.Services.DTOs.TeamDtos
+﻿namespace FootballLeague.Services.DTOs.TeamDtos
 {
     public class CreateTeamDto
     {
+        public string Name { get; set; }
     }
 }

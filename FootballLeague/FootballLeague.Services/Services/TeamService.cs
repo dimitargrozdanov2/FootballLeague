@@ -4,8 +4,6 @@ using FootballLeague.Models;
 using FootballLeague.Services.DTOs.TeamDtos;
 using FootballLeague.Services.Services.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FootballLeague.Services.Services
 {

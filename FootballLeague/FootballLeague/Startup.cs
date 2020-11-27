@@ -32,6 +32,8 @@ namespace FootballLeague
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IMatchService, MatchService>();
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<IRankingTableService, RankingTableService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

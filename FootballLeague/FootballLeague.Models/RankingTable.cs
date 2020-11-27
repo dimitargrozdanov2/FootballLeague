@@ -12,8 +12,9 @@ namespace FootballLeague.Models
 
         public int Points { get; set; }
 
-        public int GoalDiffrence { get; set; }
+        public int GoalDifference { get; set; }
 
+        public int MatchesPlayed { get; set; }
         public virtual List<Team> Teams { get; set; }
 
     }

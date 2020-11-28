@@ -25,14 +25,14 @@ namespace FootballLeague.Web.Controllers
         }
 
         [HttpGet("")]
-        public IActionResult GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public ActionResult<TEntityDto> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             // to be implemented
             return Ok();
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<TEntityDto> GetSingleAsync([FromRoute] Guid id)
+        public virtual async Task<ActionResult<TEntityDto>> GetSingleAsync([FromRoute] Guid id)
         {
             var singleEntity = await service.GetAsync(id);
             if (singleEntity == null) throw new NotFoundException("Entity not found!");
@@ -40,7 +40,7 @@ namespace FootballLeague.Web.Controllers
         }
 
         [HttpPost("")]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] TCreateEntityInput createEntityInput)
+        public virtual async Task<ActionResult<TEntityDto>> CreateAsync([FromBody] TCreateEntityInput createEntityInput)
         {
 
             var item = await service.CreateAsync(createEntityInput);
@@ -49,7 +49,7 @@ namespace FootballLeague.Web.Controllers
         }
 
         [HttpPut("")]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] TUpdateEntityInput updateEntityInput)
+        public virtual async Task<ActionResult<TEntityDto>> UpdateAsync([FromBody] TUpdateEntityInput updateEntityInput)
         {
 
             var entityToBeUpdatedDto = await service.UpdateAsync(updateEntityInput.Id, updateEntityInput);
@@ -61,7 +61,7 @@ namespace FootballLeague.Web.Controllers
 
        
         [HttpDelete("{id}")]
-        public virtual async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
+        public virtual async Task<ActionResult<TEntityDto>> DeleteAsync([FromRoute] Guid id)
         {
             await service.DeleteAsync(id);
             return NoContent();

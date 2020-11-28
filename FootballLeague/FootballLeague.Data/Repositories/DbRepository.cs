@@ -11,16 +11,15 @@ using System.Threading.Tasks;
 
 namespace FootballLeague.Data.Repositories
 {
-    public class DbRepository<TEntity, TDbContext> : IRepository<TEntity>
+    public class DbRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IEntity
-        where TDbContext : DbContext
     {
-        protected readonly TDbContext dbContext;
+        protected readonly ApplicationDbContext dbContext;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="DbRepository{TEntity}" /> class.
         /// </summary>
-        public DbRepository(TDbContext dbContext)
+        public DbRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }

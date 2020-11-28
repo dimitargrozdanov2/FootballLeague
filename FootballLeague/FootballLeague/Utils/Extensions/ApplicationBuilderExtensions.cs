@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FootballLeague.Web.Utils
+namespace FootballLeague.Web.Utils.Extensions
 {
-    static class Extension
+    public static class ApplicationBuilderExtensions
     {
         public static void Initialize(this IApplicationBuilder app)
         {

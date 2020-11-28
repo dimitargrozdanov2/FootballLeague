@@ -9,7 +9,7 @@ namespace FootballLeague.Web.Controllers
 {
     [Route("Match")]
     public class MatchController : 
-        ApiCrudController<IMatchService, Match, MatchDto, Guid, UpdateMatchDto, CreateMatchDto>
+        ApiCrudController<IMatchService, Match, MatchDto, UpdateMatchDto, CreateMatchDto>
     {
 
         public MatchController(IMatchService matchService, IMapper mapper)

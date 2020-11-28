@@ -4,13 +4,15 @@ using FootballLeague.Models;
 using FootballLeague.Services.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace FootballLeague.Web.Controllers
 {
-    public class ApiCrudController<TService, TEntity, TEntityDto, Guid, TUpdateEntityInput, TCreateEntityInput> : ControllerBase
-       where TService : class, ICrudService<TEntity, TEntityDto, Guid, TUpdateEntityInput, TCreateEntityInput>
+    public class ApiCrudController<TService, TEntity, TEntityDto, TUpdateEntityInput, TCreateEntityInput> : ControllerBase
+       where TService : class, ICrudService<TEntity, TEntityDto, TUpdateEntityInput, TCreateEntityInput>
        where TEntityDto : class, IEntityDto
        where TUpdateEntityInput : class, IEntityDto
        where TEntity : class, IEntity
@@ -25,14 +27,14 @@ namespace FootballLeague.Web.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult<TEntityDto> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public ActionResult<List<TEntityDto>> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            // to be implemented
-            return Ok();
+            var result = service.GetAll(filter);
+            return result.ToList();
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<ActionResult<TEntityDto>> GetSingleAsync([FromRoute] Guid id)
+        public virtual async Task<ActionResult<TEntityDto>> GetSingleAsync([FromRoute] long id)
         {
             var singleEntity = await service.GetAsync(id);
             if (singleEntity == null) throw new NotFoundException("Entity not found!");
@@ -61,7 +63,7 @@ namespace FootballLeague.Web.Controllers
 
        
         [HttpDelete("{id}")]
-        public virtual async Task<ActionResult<TEntityDto>> DeleteAsync([FromRoute] Guid id)
+        public virtual async Task<ActionResult<TEntityDto>> DeleteAsync([FromRoute] long id)
         {
             await service.DeleteAsync(id);
             return NoContent();

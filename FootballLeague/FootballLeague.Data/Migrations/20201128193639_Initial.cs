@@ -12,7 +12,7 @@ namespace FootballLeague.Data.Migrations
                 name: "Teams",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: true)
                 },
@@ -25,12 +25,12 @@ namespace FootballLeague.Data.Migrations
                 name: "Matches",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Result = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
-                    HomeTeamId = table.Column<int>(nullable: false),
-                    GuestTeamId = table.Column<int>(nullable: false),
+                    HomeTeamId = table.Column<long>(nullable: false),
+                    GuestTeamId = table.Column<long>(nullable: false),
                     Venue = table.Column<string>(nullable: true),
                     Outcome = table.Column<int>(nullable: false)
                 },
@@ -55,12 +55,12 @@ namespace FootballLeague.Data.Migrations
                 name: "Rankings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<long>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Position = table.Column<int>(nullable: false),
                     Points = table.Column<int>(nullable: false),
                     MatchesPlayed = table.Column<int>(nullable: false),
-                    TeamId = table.Column<int>(nullable: false)
+                    TeamId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {

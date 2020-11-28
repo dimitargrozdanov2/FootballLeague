@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FootballLeague.Services.Services
 {
-    public class CrudService<TEntity, TEntityDto, Guid, TUpdateEntityInput, TCreateEntityInput>
+    public class CrudService<TEntity, TEntityDto, TUpdateEntityInput, TCreateEntityInput>
         where TEntityDto : class
         where TEntity : class, IEntity
         where TUpdateEntityInput : class
@@ -41,7 +41,7 @@ namespace FootballLeague.Services.Services
         }
 
         /// <inheritdoc/>
-        public virtual async Task DeleteAsync(Guid primaryKey)
+        public virtual async Task DeleteAsync(long primaryKey)
         {
             ObjectCheck.PrimaryKeyCheck(primaryKey, $"primaryKey <= 0 in {nameof(TEntity)}");
             var entityToBeDeleted = await GetAsync(primaryKey);
@@ -63,7 +63,7 @@ namespace FootballLeague.Services.Services
         }
 
         /// <inheritdoc/>
-        public virtual async Task<TEntityDto> GetAsync(Guid primaryKey)
+        public virtual async Task<TEntityDto> GetAsync(long primaryKey)
         {
             ObjectCheck.PrimaryKeyCheck(primaryKey, $"primaryKey <= 0 in {nameof(TEntity)}");
             var entity = await repository.GetAsync(primaryKey);
@@ -71,7 +71,7 @@ namespace FootballLeague.Services.Services
         }
 
         /// <inheritdoc/>
-        public virtual async Task<TEntityDto> UpdateAsync(Guid primaryKey, TUpdateEntityInput editInput)
+        public virtual async Task<TEntityDto> UpdateAsync(long primaryKey, TUpdateEntityInput editInput)
         {
             ObjectCheck.PrimaryKeyCheck(primaryKey, $"primaryKey <= 0 in {nameof(TUpdateEntityInput)}");
             var entityToBeUpdated = await repository.GetAsync(primaryKey);

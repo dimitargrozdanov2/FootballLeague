@@ -8,7 +8,7 @@ namespace FootballLeague.Services.DTOs.MatchDtos
 {
     public class MatchDto : IEntityDto
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         public string Result { get; set; }
 

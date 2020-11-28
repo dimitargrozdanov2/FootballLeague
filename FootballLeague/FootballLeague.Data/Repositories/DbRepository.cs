@@ -34,7 +34,7 @@ namespace FootballLeague.Data.Repositories
         }
 
         /// <inheritdoc/>
-        public virtual async Task<TEntity> GetAsync(object primaryKey)
+        public virtual async Task<TEntity> GetAsync(long primaryKey)
         {
             ObjectCheck.PrimaryKeyCheck(primaryKey, $"primaryKey <= 0 in {nameof(IRepository<TEntity>)}");
             return await dbContext.Set<TEntity>().FindAsync(primaryKey);
@@ -62,7 +62,7 @@ namespace FootballLeague.Data.Repositories
         }
 
         /// <inheritdoc/>
-        public virtual async Task DeleteAsync(object primaryKey)
+        public virtual async Task DeleteAsync(long primaryKey)
         {
             var entityToBeDeleted = await GetAsync(primaryKey);
             ObjectCheck.EntityCheck(entityToBeDeleted, $"{nameof(TEntity)} missing.");

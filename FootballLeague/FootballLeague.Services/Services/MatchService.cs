@@ -7,7 +7,7 @@ using System;
 
 namespace FootballLeague.Services.Services
 {
-    public class MatchService : CrudService<Match, MatchDto, Guid, UpdateMatchDto, CreateMatchDto>,
+    public class MatchService : CrudService<Match, MatchDto, UpdateMatchDto, CreateMatchDto>,
         IMatchService
     {
         public MatchService(IRepository<Match> repository, IMapper mapper) : base(repository, mapper)

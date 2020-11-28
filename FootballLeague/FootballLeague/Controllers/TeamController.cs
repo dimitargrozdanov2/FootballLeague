@@ -9,7 +9,7 @@ namespace FootballLeague.Web.Controllers
 {
     [Route("Team")]
     public class TeamController :
-        ApiCrudController<ITeamService, Team, TeamDto, Guid, UpdateTeamDto, CreateTeamDto>
+        ApiCrudController<ITeamService, Team, TeamDto, UpdateTeamDto, CreateTeamDto>
     {
 
         public TeamController(ITeamService teamService, IMapper mapper)

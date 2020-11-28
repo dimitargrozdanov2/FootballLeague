@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace FootballLeague.Services.Services.Contracts
 {
     public interface
-    ICrudService<TEntity, TEntityDto, Guid, TUpdateEntityInput, TCreateEntityInput>
+    ICrudService<TEntity, TEntityDto, TUpdateEntityInput, TCreateEntityInput>
     where TEntityDto : class
     where TEntity : class, IEntity
     {
         Task<TEntityDto> CreateAsync(TCreateEntityInput createInput);
 
-        Task DeleteAsync(Guid primaryKey);
+        Task DeleteAsync(long primaryKey);
 
-        Task<TEntityDto> UpdateAsync(System.Guid primaryKey, TUpdateEntityInput editInput);
+        Task<TEntityDto> UpdateAsync(long primaryKey, TUpdateEntityInput editInput);
 
-        Task<TEntityDto> GetAsync(Guid primaryKey);
+        Task<TEntityDto> GetAsync(long primaryKey);
 
         IEnumerable<TEntityDto> GetAll(Expression<Func<TEntity, bool>> filter = null);
 

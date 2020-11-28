@@ -4,6 +4,6 @@ namespace FootballLeague.Services.Services.Contracts
 {
     public interface IEntityDto
     {
-        Guid Id { get; set; }
+        long Id { get; set; }
     }
 }

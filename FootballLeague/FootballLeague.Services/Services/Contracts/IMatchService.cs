@@ -4,7 +4,7 @@ using System;
 
 namespace FootballLeague.Services.Services.Contracts
 {
-    public interface IMatchService : ICrudService<Match, MatchDto, Guid, UpdateMatchDto, CreateMatchDto>
+    public interface IMatchService : ICrudService<Match, MatchDto, UpdateMatchDto, CreateMatchDto>
     {
     }
 }

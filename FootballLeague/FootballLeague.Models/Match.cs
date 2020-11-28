@@ -5,16 +5,16 @@ namespace FootballLeague.Models
 {
     public class Match : IEntity
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Result { get; set; }
 
         public DateTime Date { get; set; }
 
         public Team HomeTeam { get; set; }
-        public int HomeTeamId { get; set; }
+        public long HomeTeamId { get; set; }
         public Team GuestTeam { get; set; }
-        public int GuestTeamId { get; set; }
+        public long GuestTeamId { get; set; }
 
         public string Venue { get; set; }
 

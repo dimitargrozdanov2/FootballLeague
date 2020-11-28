@@ -7,7 +7,7 @@ namespace FootballLeague.Services.DTOs.RankingDtos
 {
     public class UpdateRankingDto : IEntityDto
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         public int Position { get; set; }
 

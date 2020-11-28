@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FootballLeague.Models
 {
     public class Team : IEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual List<TeamMatches> TeamMatches { get; set; }
+        public List<Match> HomeMatches { get; set; }
+        public List<Match> GuestMatches { get; set; }
 
-        public RankingTable RankingTable { get; set; }
     }
 }

@@ -1,13 +1,10 @@
-﻿using System;
+﻿using FootballLeague.Services.DTOs.TeamDtos;
 using System.Collections.Generic;
-using System.Text;
 
-namespace FootballLeague.Models
+namespace FootballLeague.Services.DTOs.RankingDtos
 {
-    public class RankingTable : IEntity
+    public class CreateRankingDto
     {
-        public Guid Id { get; set; }
-
         public int Position { get; set; }
 
         public int Points { get; set; }
@@ -15,7 +12,6 @@ namespace FootballLeague.Models
         public int GoalDifference { get; set; }
 
         public int MatchesPlayed { get; set; }
-        public virtual List<Team> Teams { get; set; }
-
+        public virtual List<TeamDto> Teams { get; set; }
     }
 }

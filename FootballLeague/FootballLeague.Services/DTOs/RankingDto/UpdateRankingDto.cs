@@ -1,12 +1,14 @@
 ﻿using FootballLeague.Services.DTOs.TeamDtos;
+using FootballLeague.Services.Services.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FootballLeague.Services.DTOs.RankingDtos
 {
-    public class CreateRankingTableDto
+    public class UpdateRankingDto : IEntityDto
     {
+        public Guid Id { get; set; }
+
         public int Position { get; set; }
 
         public int Points { get; set; }

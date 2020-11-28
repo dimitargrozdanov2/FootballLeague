@@ -1,5 +1,3 @@
-using System;
-
 namespace FootballLeague.Models
 {
     public class ErrorViewModel

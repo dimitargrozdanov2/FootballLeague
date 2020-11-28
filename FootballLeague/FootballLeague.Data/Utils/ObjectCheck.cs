@@ -1,9 +1,5 @@
 ﻿using FootballLeague.Data.Exceptions;
-using FootballLeague.Data.Repositories.Contracts;
 using FootballLeague.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FootballLeague.Data.Utils
 {

@@ -1,10 +1,8 @@
-﻿using FootballLeague.Models;
-using FootballLeague.Models.Enums;
+﻿using FootballLeague.Models.Enums;
 using FootballLeague.Services.DTOs.TeamDtos;
 using FootballLeague.Services.Services.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FootballLeague.Services.DTOs.MatchDtos
 {

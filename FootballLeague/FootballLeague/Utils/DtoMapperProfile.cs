@@ -18,9 +18,9 @@ namespace FootballLeague.Web.Utils
             CreateMap<Team, CreateTeamDto>().ReverseMap();
             CreateMap<Team, UpdateTeamDto>().ReverseMap();
 
-            CreateMap<RankingTable, RankingTableDto>().ReverseMap();
-            CreateMap<RankingTable, CreateRankingTableDto>().ReverseMap();
-            CreateMap<RankingTable, UpdateRankingTableDto>().ReverseMap();
+            CreateMap<Ranking, RankingDto>().ReverseMap();
+            CreateMap<Ranking, CreateRankingDto>().ReverseMap();
+            CreateMap<Ranking, UpdateRankingDto>().ReverseMap();
         }
 
     }

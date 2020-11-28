@@ -1,9 +1,7 @@
-﻿using FootballLeague.Data.Repositories.Contracts;
-using FootballLeague.Models;
+﻿using FootballLeague.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FootballLeague.Services.Services.Contracts

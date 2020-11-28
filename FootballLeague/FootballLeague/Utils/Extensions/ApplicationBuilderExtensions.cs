@@ -13,5 +13,24 @@ namespace FootballLeague.Web.Utils.Extensions
             var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
         }
+
+        public static void AddMiddleware(this IApplicationBuilder app)
+        {
+            app.Initialize();
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
     }
 }

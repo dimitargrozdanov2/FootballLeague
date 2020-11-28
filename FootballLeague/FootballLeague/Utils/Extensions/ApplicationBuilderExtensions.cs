@@ -1,7 +1,9 @@
 ﻿using FootballLeague.Data;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace FootballLeague.Web.Utils.Extensions
 {
@@ -30,6 +32,19 @@ namespace FootballLeague.Web.Utils.Extensions
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        public static void ConfigureEnvironment(this IWebHostEnvironment env, IApplicationBuilder app)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
         }
 
     }

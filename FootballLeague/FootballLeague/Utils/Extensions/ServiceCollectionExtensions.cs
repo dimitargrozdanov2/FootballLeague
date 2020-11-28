@@ -11,8 +11,6 @@ namespace FootballLeague.Web.Utils.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        //Add Automapper
-        //Add Application Services
         public static void AddAutomapper(this IServiceCollection services)
         {
             var mapperConfig = new MapperConfiguration(mc =>

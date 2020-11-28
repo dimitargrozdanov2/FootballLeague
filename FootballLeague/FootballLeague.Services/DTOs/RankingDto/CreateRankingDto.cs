@@ -9,9 +9,7 @@ namespace FootballLeague.Services.DTOs.RankingDtos
 
         public int Points { get; set; }
 
-        public int GoalDifference { get; set; }
-
         public int MatchesPlayed { get; set; }
-        public virtual List<TeamDto> Teams { get; set; }
+        public long TeamId { get; set; }
     }
 }

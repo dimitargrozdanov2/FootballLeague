@@ -7,10 +7,10 @@ using System;
 
 namespace FootballLeague.Services.Services
 {
-    public class RankingTableService : CrudService<Ranking, RankingDto, UpdateRankingDto, CreateRankingDto>,
-        IRankingTableService
+    public class RankingService : CrudService<Ranking, RankingDto, UpdateRankingDto, CreateRankingDto>,
+        IRankingService
     {
-        public RankingTableService(IRepository<Ranking> repository, IMapper mapper) : base(repository, mapper)
+        public RankingService(IRepository<Ranking> repository, IMapper mapper) : base(repository, mapper)
         {
         }
     }

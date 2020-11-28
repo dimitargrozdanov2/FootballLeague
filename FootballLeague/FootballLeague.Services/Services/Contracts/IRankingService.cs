@@ -4,7 +4,7 @@ using System;
 
 namespace FootballLeague.Services.Services.Contracts
 {
-    public interface IRankingTableService : ICrudService<Ranking, RankingDto, UpdateRankingDto, CreateRankingDto>
+    public interface IRankingService : ICrudService<Ranking, RankingDto, UpdateRankingDto, CreateRankingDto>
     {
     }
 }

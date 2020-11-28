@@ -28,7 +28,7 @@ namespace FootballLeague.Web.Utils.Extensions
 
             services.AddScoped<IMatchService, MatchService>();
             services.AddScoped<ITeamService, TeamService>();
-            services.AddScoped<IRankingTableService, RankingTableService>();
+            services.AddScoped<IRankingService, RankingService>();
 
             services.AddTransient(typeof(IRepository<>), typeof(DbRepository<>));
         }

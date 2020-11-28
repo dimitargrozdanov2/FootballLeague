@@ -41,7 +41,7 @@ namespace FootballLeague.Services.Services
         }
 
         /// <inheritdoc/>
-        public virtual async Task DeleteAsync(long primaryKey)
+        public virtual async Task DeleteAsync(int primaryKey)
         {
             ObjectCheck.PrimaryKeyCheck(primaryKey, $"primaryKey <= 0 in {nameof(TEntity)}");
             var entityToBeDeleted = await GetAsync(primaryKey);
@@ -63,7 +63,7 @@ namespace FootballLeague.Services.Services
         }
 
         /// <inheritdoc/>
-        public virtual async Task<TEntityDto> GetAsync(long primaryKey)
+        public virtual async Task<TEntityDto> GetAsync(int primaryKey)
         {
             ObjectCheck.PrimaryKeyCheck(primaryKey, $"primaryKey <= 0 in {nameof(TEntity)}");
             var entity = await repository.GetAsync(primaryKey);
@@ -71,7 +71,7 @@ namespace FootballLeague.Services.Services
         }
 
         /// <inheritdoc/>
-        public virtual async Task<TEntityDto> UpdateAsync(long primaryKey, TUpdateEntityInput editInput)
+        public virtual async Task<TEntityDto> UpdateAsync(int primaryKey, TUpdateEntityInput editInput)
         {
             ObjectCheck.PrimaryKeyCheck(primaryKey, $"primaryKey <= 0 in {nameof(TUpdateEntityInput)}");
             var entityToBeUpdated = await repository.GetAsync(primaryKey);

@@ -34,7 +34,7 @@ namespace FootballLeague.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<ActionResult<TEntityDto>> GetSingleAsync([FromRoute] long id)
+        public virtual async Task<ActionResult<TEntityDto>> GetSingleAsync([FromRoute] int id)
         {
             var singleEntity = await service.GetAsync(id);
             if (singleEntity == null) throw new NotFoundException("Entity not found!");
@@ -63,7 +63,7 @@ namespace FootballLeague.Web.Controllers
 
        
         [HttpDelete("{id}")]
-        public virtual async Task<ActionResult<TEntityDto>> DeleteAsync([FromRoute] long id)
+        public virtual async Task<ActionResult<TEntityDto>> DeleteAsync([FromRoute] int id)
         {
             await service.DeleteAsync(id);
             return NoContent();

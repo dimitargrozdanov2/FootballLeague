@@ -13,11 +13,11 @@ namespace FootballLeague.Services.Services.Contracts
     {
         Task<TEntityDto> CreateAsync(TCreateEntityInput createInput);
 
-        Task DeleteAsync(long primaryKey);
+        Task DeleteAsync(int primaryKey);
 
-        Task<TEntityDto> UpdateAsync(long primaryKey, TUpdateEntityInput editInput);
+        Task<TEntityDto> UpdateAsync(int primaryKey, TUpdateEntityInput editInput);
 
-        Task<TEntityDto> GetAsync(long primaryKey);
+        Task<TEntityDto> GetAsync(int primaryKey);
 
         IEnumerable<TEntityDto> GetAll(Expression<Func<TEntity, bool>> filter = null);
 

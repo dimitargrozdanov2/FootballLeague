@@ -21,19 +21,19 @@ namespace FootballLeague.Data.Migrations
 
             modelBuilder.Entity("FootballLeague.Models.Match", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("GuestTeamId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("GuestTeamId")
+                        .HasColumnType("integer");
 
-                    b.Property<long>("HomeTeamId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("HomeTeamId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Outcome")
                         .HasColumnType("integer");
@@ -55,9 +55,9 @@ namespace FootballLeague.Data.Migrations
 
             modelBuilder.Entity("FootballLeague.Models.Ranking", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("MatchesPlayed")
@@ -69,8 +69,8 @@ namespace FootballLeague.Data.Migrations
                     b.Property<int>("Position")
                         .HasColumnType("integer");
 
-                    b.Property<long>("TeamId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TeamId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -81,9 +81,9 @@ namespace FootballLeague.Data.Migrations
 
             modelBuilder.Entity("FootballLeague.Models.Team", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Name")

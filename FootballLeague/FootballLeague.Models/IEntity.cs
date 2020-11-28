@@ -6,6 +6,6 @@ namespace FootballLeague.Models
     public interface IEntity
     {
         [Key]
-        long Id { get; set; }
+        int Id { get; set; }
     }
 }

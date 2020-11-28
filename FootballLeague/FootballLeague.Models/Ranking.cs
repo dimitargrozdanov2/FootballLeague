@@ -2,7 +2,7 @@
 {
     public class Ranking : IEntity
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public int Position { get; set; }
 
@@ -12,6 +12,6 @@
 
         public Team Team { get; set; }
 
-        public long TeamId { get; set; }
+        public int TeamId { get; set; }
     }
 }

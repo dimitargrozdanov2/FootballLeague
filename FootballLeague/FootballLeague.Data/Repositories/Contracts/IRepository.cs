@@ -10,7 +10,7 @@ namespace FootballLeague.Data.Repositories.Contracts
     public interface IRepository<TEntity>
        where TEntity : class, IEntity
     {
-        Task<TEntity> GetAsync(long primaryKey);
+        Task<TEntity> GetAsync(int primaryKey);
 
         IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null);
 
@@ -20,7 +20,7 @@ namespace FootballLeague.Data.Repositories.Contracts
 
         Task<TEntity> UpdateAsync(TEntity entity);
 
-        Task DeleteAsync(long primaryKey);
+        Task DeleteAsync(int primaryKey);
 
         Task DeleteRangeAsync(IEnumerable<TEntity> entities);
 

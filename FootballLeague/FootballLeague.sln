@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Web", "FootballLeague\FootballLeague.Web.csproj", "{C90B2007-F564-4640-A585-36DB18FD88D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballLeague.Web", "FootballLeague\FootballLeague.Web.csproj", "{C90B2007-F564-4640-A585-36DB18FD88D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Data", "FootballLeague.Data\FootballLeague.Data.csproj", "{530D18AA-6E2B-4F0F-8D5E-217013C18442}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballLeague.Data", "FootballLeague.Data\FootballLeague.Data.csproj", "{530D18AA-6E2B-4F0F-8D5E-217013C18442}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Models", "FootballLeague.Models\FootballLeague.Models.csproj", "{BEE6D253-7782-45AB-9CB8-07EA7AE17263}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballLeague.Models", "FootballLeague.Models\FootballLeague.Models.csproj", "{BEE6D253-7782-45AB-9CB8-07EA7AE17263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Services", "FootballLeague.Services\FootballLeague.Services.csproj", "{D83FD64D-954E-40B4-9480-FECBBF8DFACC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballLeague.Services", "FootballLeague.Services\FootballLeague.Services.csproj", "{D83FD64D-954E-40B4-9480-FECBBF8DFACC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballLeague.Tests", "FootballLeague.Tests\FootballLeague.Tests.csproj", "{D5B63962-987C-4D68-B811-A725ABC0964D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballLeague.Tests", "FootballLeague.Tests\FootballLeague.Tests.csproj", "{D5B63962-987C-4D68-B811-A725ABC0964D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

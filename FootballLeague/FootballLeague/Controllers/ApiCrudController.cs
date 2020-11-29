@@ -2,6 +2,7 @@
 using FootballLeague.Data.Exception;
 using FootballLeague.Models;
 using FootballLeague.Services.Services.Contracts;
+using FootballLeague.Web.Utils.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -36,24 +37,34 @@ namespace FootballLeague.Web.Controllers
         [HttpGet("{id}")]
         public virtual async Task<ActionResult<TEntityDto>> GetSingleAsync([FromRoute] int id)
         {
+            if (id == 0)
+            {
+                throw new ModelValidationException();
+            }
             var singleEntity = await service.GetAsync(id);
-            if (singleEntity == null) throw new NotFoundException("Entity not found!");
+            if (singleEntity == null) throw new NotFoundException(CommonExceptionCodes.NotFound);
             return singleEntity;
         }
 
         [HttpPost("")]
         public virtual async Task<ActionResult<TEntityDto>> CreateAsync([FromBody] TCreateEntityInput createEntityInput)
         {
-
+            if (createEntityInput == null)
+            {
+                throw new ModelValidationException();
+            }
             var item = await service.CreateAsync(createEntityInput);
-            if (item == null) throw new NotFoundException("No create information provided!");
+            if (item == null) throw new NotFoundException(CommonExceptionCodes.NoInformationProvided);
             return Created($"{Url?.ActionLink()}/{item}", item);
         }
 
         [HttpPut("")]
         public virtual async Task<ActionResult<TEntityDto>> UpdateAsync([FromBody] TUpdateEntityInput updateEntityInput)
         {
-
+            if (updateEntityInput == null)
+            {
+                throw new ModelValidationException();
+            }
             var entityToBeUpdatedDto = await service.UpdateAsync(updateEntityInput.Id, updateEntityInput);
 
             if (entityToBeUpdatedDto == null) throw new NotFoundException($"{typeof(TEntity).Name} not found!");
@@ -65,6 +76,10 @@ namespace FootballLeague.Web.Controllers
         [HttpDelete("{id}")]
         public virtual async Task<ActionResult<TEntityDto>> DeleteAsync([FromRoute] int id)
         {
+            if (id == 0)
+            {
+                throw new ModelValidationException();
+            }
             await service.DeleteAsync(id);
             return NoContent();
         }

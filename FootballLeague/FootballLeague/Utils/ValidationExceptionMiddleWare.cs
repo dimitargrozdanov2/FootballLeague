@@ -57,17 +57,6 @@ namespace FootballLeague.Web.Utils
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
 
-            if (string.IsNullOrEmpty(result))
-            {
-                var error = exception.Message;
-
-                if (exception is BaseDomainException baseDomainException)
-                {
-                    error = baseDomainException.Error;
-                }
-
-                result = SerializeObject(new[] { error });
-            }
 
             return context.Response.WriteAsync(result);
         }

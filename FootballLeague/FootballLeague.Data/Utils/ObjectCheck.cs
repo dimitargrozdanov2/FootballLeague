@@ -10,22 +10,10 @@ namespace FootballLeague.Data.Utils
             if (entity == null)
             {
                 if (message == null)
-                    message = "Entity was not found!";
+                    message = CommonExceptionCodes.NotFound;
 
                 throw new NotFoundException(message);
             }
-        }
-
-        public static void EntityCheck(object entityDto, string message = null)
-        {
-            if (entityDto == null)
-            {
-                if (message == null)
-                    message = "Dto was not found!";
-
-                throw new NotFoundException(message);
-            }
-
         }
 
         public static void PrimaryKeyCheck(object primaryKey, string message = null)
@@ -33,7 +21,7 @@ namespace FootballLeague.Data.Utils
             if (primaryKey == null || primaryKey.ToString() == "0")
             {
                 if (message == null)
-                    message = "Primary key cannot be null!";
+                    message = CommonExceptionCodes.PrimaryKeyNullError;
                 throw new NotFoundException(message);
             }
         }

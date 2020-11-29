@@ -4,7 +4,7 @@ namespace FootballLeague.Web.Utils.Extensions
 {
     public abstract class BaseDomainException : Exception
     {
-        private string? error;
+        private string error;
 
         public string Error
         {

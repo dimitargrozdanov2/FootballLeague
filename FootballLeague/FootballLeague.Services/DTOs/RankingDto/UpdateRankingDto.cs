@@ -14,6 +14,6 @@ namespace FootballLeague.Services.DTOs.RankingDtos
         public int Points { get; set; }
 
         public int MatchesPlayed { get; set; }
-        public long TeamId { get; set; }
+        public int TeamId { get; set; }
     }
 }

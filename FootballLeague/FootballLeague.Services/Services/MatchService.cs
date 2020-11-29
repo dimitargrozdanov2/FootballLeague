@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using FootballLeague.Data.Exception;
 using FootballLeague.Data.Repositories.Contracts;
 using FootballLeague.Models;
@@ -6,6 +7,7 @@ using FootballLeague.Services.DTOs.MatchDtos;
 using FootballLeague.Services.DTOs.RankingDtos;
 using FootballLeague.Services.Services.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,33 +18,62 @@ namespace FootballLeague.Services.Services
     {
 
         private readonly IRankingService rankingService;
-        public MatchService(IRepository<Match> repository, IRankingService rankingService, IMapper mapper) : base(repository, mapper)
+        private readonly ITeamService teamService;
+        public MatchService(IRepository<Match> repository, IRankingService rankingService, ITeamService teamService, IMapper mapper) : base(repository, mapper)
         {
             this.rankingService = rankingService;
+            this.teamService = teamService;
         }
 
 
-        public void ValidateMatchDto(MatchValidateDto matchDto)
+        public async Task ValidateMatchDto(MatchValidateDto matchDto)
         {
+            List<ValidationFailure> errors = new List<ValidationFailure>();
             if (matchDto.Date <= DateTime.UtcNow)
             {
                 if (String.IsNullOrEmpty(matchDto.Result))
-                    throw new ModelValidationException();
+                    errors.Add(new ValidationFailure(nameof(matchDto.Date),CommonExceptionCodes.NoInformationProvided));
             }
 
             if (matchDto.Date > DateTime.UtcNow && !String.IsNullOrEmpty(matchDto.Result))
-                throw new ModelValidationException();
+                errors.Add(new ValidationFailure(nameof(matchDto.Result), CommonExceptionCodes.NoInformationProvided));
+
+            if (matchDto.GuestTeamId == 0 || matchDto.HomeTeamId == 0)
+            {
+                errors.Add(new ValidationFailure(nameof(matchDto.GuestTeamId), CommonExceptionCodes.NoInformationProvided));
+            }
+            if (matchDto.HomeTeamId == 0)
+            {
+                errors.Add(new ValidationFailure(nameof(matchDto.HomeTeamId), CommonExceptionCodes.NoInformationProvided));
+            }
+
+            var validateHomeTeam = await this.teamService.GetSingleAsync(r => r.Id == matchDto.GuestTeamId);
+            var validateGuestTeam = await this.teamService.GetSingleAsync(r => r.Id == matchDto.HomeTeamId);
+
+            if (validateHomeTeam == null)
+            {
+                errors.Add(new ValidationFailure(nameof(matchDto.HomeTeamId), CommonExceptionCodes.NoHomeTeamProvided));
+            }
+            if (validateGuestTeam == null)
+            {
+                errors.Add(new ValidationFailure(nameof(matchDto.GuestTeamId), CommonExceptionCodes.NoGuestTeamProvided));
+            }
+
+            if (errors.Count > 0)
+            {
+                throw new ModelValidationException(errors);
+            }
+
         }
 
         public async Task ManipulateRankingService(MatchValidateDto matchDto)
         {
             if (matchDto.Date <= DateTime.UtcNow && !String.IsNullOrEmpty(matchDto.Result))
             {
-                var homeTeam = await this.rankingService.GetSingleAsync(r => r.TeamId == matchDto.HomeTeamId);
-                var guestTeam = await this.rankingService.GetSingleAsync(r => r.TeamId == matchDto.GuestTeamId);
-                if (homeTeam != null)
+                var homeTeamRank = await this.rankingService.GetSingleAsync(r => r.TeamId == matchDto.HomeTeamId);
+                var guestTeamRank = await this.rankingService.GetSingleAsync(r => r.TeamId == matchDto.GuestTeamId);
+                if (homeTeamRank != null)
                 {
-                    var teamRank = await rankingService.GetSingleAsync(r => r.TeamId == homeTeam.Id);
                     int pointsFromMatch = 0;
                     if (matchDto.Outcome == Models.Enums.Outcome.Draw)
                     {
@@ -56,28 +87,9 @@ namespace FootballLeague.Services.Services
                     {
                         pointsFromMatch = 0;
                     }
-                    await this.rankingService.UpdateAsync(homeTeam.Id, new UpdateRankingDto() { Points = teamRank.Points + pointsFromMatch, MatchesPlayed = teamRank.MatchesPlayed + 1 });
+                    await this.rankingService.UpdateAsync(homeTeamRank.Id, new UpdateRankingDto() { Points = homeTeamRank.Points + pointsFromMatch, MatchesPlayed = homeTeamRank.MatchesPlayed + 1, TeamId = homeTeamRank.TeamId });
                 }
-                if (guestTeam != null)
-                {
-                    var teamRank = await rankingService.GetSingleAsync(r => r.TeamId == guestTeam.Id);
-
-                    int pointsFromMatch = 0;
-                    if (matchDto.Outcome == Models.Enums.Outcome.Draw)
-                    {
-                        pointsFromMatch = 1;
-                    }
-                    else if (matchDto.Outcome == Models.Enums.Outcome.HomeWin)
-                    {
-                        pointsFromMatch = 0;
-                    }
-                    else
-                    {
-                        pointsFromMatch = 3;
-                    }
-                    await this.rankingService.UpdateAsync(homeTeam.Id, new UpdateRankingDto() { Points = teamRank.Points + pointsFromMatch, MatchesPlayed = teamRank.MatchesPlayed + 1 });
-                }
-                else if (homeTeam == null)
+                else
                 {
                     if (matchDto.Outcome == Models.Enums.Outcome.Draw)
                     {
@@ -93,7 +105,26 @@ namespace FootballLeague.Services.Services
 
                     }
                 }
-                else if (guestTeam == null)
+               
+                if (guestTeamRank != null)
+                {
+                    int pointsFromMatch = 0;
+                    if (matchDto.Outcome == Models.Enums.Outcome.Draw)
+                    {
+                        pointsFromMatch = 1;
+                    }
+                    else if (matchDto.Outcome == Models.Enums.Outcome.HomeWin)
+                    {
+                        pointsFromMatch = 0;
+                    }
+                    else
+                    {
+                        pointsFromMatch = 3;
+                    }
+                    await this.rankingService.UpdateAsync(guestTeamRank.Id, new UpdateRankingDto() { Points = guestTeamRank.Points + pointsFromMatch, MatchesPlayed = guestTeamRank.MatchesPlayed + 1, TeamId = guestTeamRank.TeamId });
+                }
+
+                else
                 {
                     if (matchDto.Outcome == Models.Enums.Outcome.Draw)
                     {
@@ -108,32 +139,38 @@ namespace FootballLeague.Services.Services
                         await rankingService.CreateAsync(new CreateRankingDto() { MatchesPlayed = 1, Points = 3, TeamId = matchDto.HomeTeamId });
                     }
                 }
-                var allRankings = rankingService.GetAll().Select(a => mapper.Map<UpdateRankingDto>(a)).OrderBy(r => r.Points).ToList();
 
-                foreach (var ranking in allRankings)
+
+                var allRankings = rankingService.GetAll().OrderByDescending(r => r.Points).ToList();
+
+                for (int i = 0; i < allRankings.Count; i++)
                 {
-                    await rankingService.UpdateAsync(ranking.Id, ranking);
+                    var mappedObject = mapper.Map<UpdateRankingDto>(allRankings[i]);
+                    mappedObject.Position = i + 1;
+                    await rankingService.UpdateAsync(allRankings[i].Id, mappedObject);
                 }
-
             }
         }
 
         public override async Task<MatchDto> CreateAsync(CreateMatchDto createInput)
         {
-            ValidateMatchDto(createInput);
-            var createdMatch = await base.CreateAsync(createInput);
+            await ValidateMatchDto(createInput);
+            var mappedObject = mapper.Map<Match>(createInput);
+            var createdMatch = await this.repository.AddAsync(mappedObject);
             await ManipulateRankingService(createInput);
-
-            return createdMatch;
+            var result = mapper.Map<MatchDto>(createdMatch);
+            return result;
         }
 
         public override async Task<MatchDto> UpdateAsync(int primaryKey, UpdateMatchDto editInput)
         {
-            ValidateMatchDto(editInput);
-            var updatedMatch = await base.UpdateAsync(primaryKey, editInput);
+            await ValidateMatchDto(editInput);
+            var mappedObject = mapper.Map<Match>(editInput);
+            mappedObject.Id = primaryKey;
+            var updatedMatch = await this.repository.UpdateAsync(mappedObject);
             await ManipulateRankingService(editInput);
-
-            return updatedMatch;
+            var result = mapper.Map<MatchDto>(updatedMatch);
+            return result;
         }
     }
 }

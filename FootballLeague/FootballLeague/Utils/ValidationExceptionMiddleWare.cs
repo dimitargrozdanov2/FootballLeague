@@ -52,6 +52,12 @@ namespace FootballLeague.Web.Utils
                     break;
             }
 
+            if (String.IsNullOrEmpty(result))
+            {
+                code = HttpStatusCode.BadRequest;
+                result = SerializeObject(new[] { "Invalid request path" });
+            }
+
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
 

@@ -13,5 +13,10 @@
         public static readonly string ModelValidationErrors = "ModelValidationErrors";
 
         public static readonly string PrimaryKeyNullError = "Primary key cannot be null!";
+
+        public static readonly string NoHomeTeamProvided = "No Valid Home Team Provided";
+
+        public static readonly string NoGuestTeamProvided = "No Valid Guest Team Provided";
+
     }
 }

@@ -21,6 +21,8 @@ namespace FootballLeague.Web.Utils
             CreateMap<Ranking, RankingDto>().ReverseMap();
             CreateMap<Ranking, CreateRankingDto>().ReverseMap();
             CreateMap<Ranking, UpdateRankingDto>().ReverseMap();
+            CreateMap<RankingDto, UpdateRankingDto>().ReverseMap();
+
         }
 
     }

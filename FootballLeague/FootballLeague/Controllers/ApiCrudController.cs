@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using FootballLeague.Data.Exception;
 using FootballLeague.Models;
 using FootballLeague.Services.Services.Contracts;
@@ -19,6 +20,8 @@ namespace FootballLeague.Web.Controllers
     {
         protected readonly TService service;
         protected readonly IMapper mapper;
+        readonly List<ValidationFailure> errors = new List<ValidationFailure>();
+
 
         public ApiCrudController(TService service, IMapper mapper)
         {
@@ -38,7 +41,8 @@ namespace FootballLeague.Web.Controllers
         {
             if (id == 0)
             {
-                throw new ModelValidationException();
+                errors.Add(new ValidationFailure(nameof(id), CommonExceptionCodes.NoInformationProvided));
+                throw new ModelValidationException(errors);
             }
             var singleEntity = await service.GetAsync(id);
             if (singleEntity == null) throw new NotFoundException(CommonExceptionCodes.NotFound);
@@ -50,7 +54,8 @@ namespace FootballLeague.Web.Controllers
         {
             if (createEntityInput == null)
             {
-                throw new ModelValidationException();
+                errors.Add(new ValidationFailure(nameof(createEntityInput), CommonExceptionCodes.NoInformationProvided));
+                throw new ModelValidationException(errors);
             }
             var item = await service.CreateAsync(createEntityInput);
             if (item == null) throw new NotFoundException(CommonExceptionCodes.NoInformationProvided);
@@ -62,7 +67,8 @@ namespace FootballLeague.Web.Controllers
         {
             if (updateEntityInput == null)
             {
-                throw new ModelValidationException();
+                errors.Add(new ValidationFailure(nameof(updateEntityInput), CommonExceptionCodes.NoInformationProvided));
+                throw new ModelValidationException(errors);
             }
             var entityToBeUpdatedDto = await service.UpdateAsync(updateEntityInput.Id, updateEntityInput);
 
@@ -77,7 +83,8 @@ namespace FootballLeague.Web.Controllers
         {
             if (id == 0)
             {
-                throw new ModelValidationException();
+                errors.Add(new ValidationFailure(nameof(id), CommonExceptionCodes.NoInformationProvided));
+                throw new ModelValidationException(errors);
             }
             await service.DeleteAsync(id);
             return NoContent();

@@ -77,10 +77,10 @@ namespace FootballLeague.Services.Services
             var entityToBeUpdated = await repository.GetAsync(primaryKey);
 
             if (entityToBeUpdated == null) return null;
-            mapper.Map(editInput, entityToBeUpdated);
-
-            var result = mapper.Map<TEntityDto>(await repository.UpdateAsync(entityToBeUpdated));
-            return result;
+            var x = mapper.Map(editInput, entityToBeUpdated);
+            x.Id = primaryKey;
+            var result = await repository.UpdateAsync(entityToBeUpdated);
+            return mapper.Map<TEntityDto>(result);
         }
     }
 }

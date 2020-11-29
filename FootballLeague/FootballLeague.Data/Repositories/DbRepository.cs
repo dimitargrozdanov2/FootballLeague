@@ -3,10 +3,8 @@ using FootballLeague.Data.Utils;
 using FootballLeague.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FootballLeague.Data.Repositories
@@ -69,29 +67,6 @@ namespace FootballLeague.Data.Repositories
 
             dbContext.Set<TEntity>().Remove(entityToBeDeleted);
             await dbContext.SaveChangesAsync();
-        }
-
-        /// <inheritdoc/>
-        public virtual async Task DeleteRangeAsync(IEnumerable<TEntity> entities)
-        {
-            dbContext.Set<TEntity>().RemoveRange(entities);
-            await dbContext.SaveChangesAsync();
-        }
-
-        /// <inheritdoc/>
-        public virtual async Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities)
-        {
-            dbContext.Set<TEntity>().AddRange(entities);
-            await dbContext.SaveChangesAsync();
-            return entities;
-        }
-
-        /// <inheritdoc/>
-        public virtual async Task<IEnumerable<TEntity>> UpdateRangeAsync(IEnumerable<TEntity> entities)
-        {
-            dbContext.Set<TEntity>().UpdateRange(entities);
-            await dbContext.SaveChangesAsync();
-            return entities;
         }
     }
 }

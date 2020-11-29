@@ -11,7 +11,7 @@ namespace FootballLeague.Web.Utils.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddAutomapper(this IServiceCollection services)
+        public static IServiceCollection AddAutomapper(this IServiceCollection services)
         {
             var mapperConfig = new MapperConfiguration(mc =>
             {
@@ -19,6 +19,8 @@ namespace FootballLeague.Web.Utils.Extensions
             });
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            return services;
         }
 
         public static void AddApplicationServices(this IServiceCollection services)

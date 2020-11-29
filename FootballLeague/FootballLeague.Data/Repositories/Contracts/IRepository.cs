@@ -21,11 +21,5 @@ namespace FootballLeague.Data.Repositories.Contracts
         Task<TEntity> UpdateAsync(TEntity entity);
 
         Task DeleteAsync(int primaryKey);
-
-        Task DeleteRangeAsync(IEnumerable<TEntity> entities);
-
-        Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
-
-        Task<IEnumerable<TEntity>> UpdateRangeAsync(IEnumerable<TEntity> entities);
     }
 }

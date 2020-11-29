@@ -1,6 +1,4 @@
 ﻿using FootballLeague.Data.Exception;
-using FootballLeague.Web.Utils.Exceptions;
-using FootballLeague.Web.Utils.Extensions;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;

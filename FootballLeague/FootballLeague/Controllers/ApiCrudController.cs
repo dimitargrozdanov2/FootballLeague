@@ -2,7 +2,6 @@
 using FootballLeague.Data.Exception;
 using FootballLeague.Models;
 using FootballLeague.Services.Services.Contracts;
-using FootballLeague.Web.Utils.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

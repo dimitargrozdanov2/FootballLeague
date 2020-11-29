@@ -1,11 +1,11 @@
 ﻿using FluentValidation.Results;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace FootballLeague.Web.Utils.Exceptions
+namespace FootballLeague.Data.Exception
 {
+    using System;
+
     public class ModelValidationException : Exception
     {
         public ModelValidationException()

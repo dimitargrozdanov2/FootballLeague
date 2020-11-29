@@ -29,6 +29,6 @@ This project could have been improved in the following ways:
 1. Use Redis for ranking
 2. Could have been created with Domain-Driven-Design
 3. Automapper could be optimized using Reflection and Attributes
-4. More Unit tests
+4. Unit tests
 
 Project uses design patterns and is a REST API with no front-end.

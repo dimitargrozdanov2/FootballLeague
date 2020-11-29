@@ -1,4 +1,4 @@
-﻿using FootballLeague.Data.Exceptions;
+﻿using FootballLeague.Data.Exception;
 using FootballLeague.Models;
 
 namespace FootballLeague.Data.Utils
@@ -16,17 +16,17 @@ namespace FootballLeague.Data.Utils
             }
         }
 
-        //public static void EntityCheck(IDto entityDto, string message = null)
-        //{
-        //    if (entityDto == null)
-        //    {
-        //        if (message == null)
-        //            message = "Dto was not found!";
+        public static void EntityCheck(object entityDto, string message = null)
+        {
+            if (entityDto == null)
+            {
+                if (message == null)
+                    message = "Dto was not found!";
 
-        //        throw new NotFoundException(message);
-        //    }
+                throw new NotFoundException(message);
+            }
 
-        //}
+        }
 
         public static void PrimaryKeyCheck(object primaryKey, string message = null)
         {

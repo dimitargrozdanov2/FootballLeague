@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FootballLeague.Data.Exceptions;
+using FootballLeague.Data.Exception;
 using FootballLeague.Models;
 using FootballLeague.Services.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;

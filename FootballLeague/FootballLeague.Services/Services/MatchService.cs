@@ -44,7 +44,7 @@ namespace FootballLeague.Services.Services
                     {
                         pointsFromMatch = 0;
                     }
-                    await this.rankingService.UpdateAsync(homeTeam.Id, new DTOs.RankingDtos.UpdateRankingDto() { Points = teamRank.Points + pointsFromMatch, MatchesPlayed = teamRank.MatchesPlayed + 1 });
+                    await this.rankingService.UpdateAsync(homeTeam.Id, new UpdateRankingDto() { Points = teamRank.Points + pointsFromMatch, MatchesPlayed = teamRank.MatchesPlayed + 1 });
                     //update
                 }
                 if (guestTeam != null)
@@ -64,21 +64,21 @@ namespace FootballLeague.Services.Services
                     {
                         pointsFromMatch = 3;
                     }
-                    await this.rankingService.UpdateAsync(homeTeam.Id, new DTOs.RankingDtos.UpdateRankingDto() { Points = teamRank.Points + pointsFromMatch, MatchesPlayed = teamRank.MatchesPlayed + 1 });
+                    await this.rankingService.UpdateAsync(homeTeam.Id, new UpdateRankingDto() { Points = teamRank.Points + pointsFromMatch, MatchesPlayed = teamRank.MatchesPlayed + 1 });
                 }
                 else if (homeTeam == null)
                 {
                     if (createInput.Outcome == Models.Enums.Outcome.Draw)
                     {
-                        await rankingService.CreateAsync(new DTOs.RankingDtos.CreateRankingDto() { MatchesPlayed = 1, Points = 1, TeamId = createInput.HomeTeamId });
+                        await rankingService.CreateAsync(new CreateRankingDto() { MatchesPlayed = 1, Points = 1, TeamId = createInput.HomeTeamId });
                     }
                     else if (createInput.Outcome == Models.Enums.Outcome.HomeWin)
                     {
-                        await rankingService.CreateAsync(new DTOs.RankingDtos.CreateRankingDto() { MatchesPlayed = 1, Points = 3, TeamId = createInput.HomeTeamId });
+                        await rankingService.CreateAsync(new CreateRankingDto() { MatchesPlayed = 1, Points = 3, TeamId = createInput.HomeTeamId });
                     }
                     else
                     {
-                        await rankingService.CreateAsync(new DTOs.RankingDtos.CreateRankingDto() { MatchesPlayed = 1, Points = 0, TeamId = createInput.HomeTeamId });
+                        await rankingService.CreateAsync(new CreateRankingDto() { MatchesPlayed = 1, Points = 0, TeamId = createInput.HomeTeamId });
 
                     }
                 }
@@ -86,15 +86,15 @@ namespace FootballLeague.Services.Services
                 {
                     if (createInput.Outcome == Models.Enums.Outcome.Draw)
                     {
-                        await rankingService.CreateAsync(new DTOs.RankingDtos.CreateRankingDto() { MatchesPlayed = 1, Points = 1, TeamId = createInput.HomeTeamId });
+                        await rankingService.CreateAsync(new CreateRankingDto() { MatchesPlayed = 1, Points = 1, TeamId = createInput.HomeTeamId });
                     }
                     else if (createInput.Outcome == Models.Enums.Outcome.HomeWin)
                     {
-                        await rankingService.CreateAsync(new DTOs.RankingDtos.CreateRankingDto() { MatchesPlayed = 1, Points = 0, TeamId = createInput.HomeTeamId });
+                        await rankingService.CreateAsync(new CreateRankingDto() { MatchesPlayed = 1, Points = 0, TeamId = createInput.HomeTeamId });
                     }
                     else
                     {
-                        await rankingService.CreateAsync(new DTOs.RankingDtos.CreateRankingDto() { MatchesPlayed = 1, Points = 3, TeamId = createInput.HomeTeamId });
+                        await rankingService.CreateAsync(new CreateRankingDto() { MatchesPlayed = 1, Points = 3, TeamId = createInput.HomeTeamId });
                     }
                 }
                 var allRankings = rankingService.GetAll().Select(a => mapper.Map<UpdateRankingDto>(a)).OrderBy(r => r.Points).ToList();

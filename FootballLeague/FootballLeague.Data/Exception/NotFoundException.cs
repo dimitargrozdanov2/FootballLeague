@@ -1,11 +1,11 @@
-﻿using System;
-
-namespace FootballLeague.Data.Exceptions
+﻿namespace FootballLeague.Data.Exception
 {
+    using System;
+
     public class NotFoundException : Exception
     {
 
-        public NotFoundException() : base()
+        public NotFoundException() : base(CommonExceptionCodes.NotFound)
         {
         }
 

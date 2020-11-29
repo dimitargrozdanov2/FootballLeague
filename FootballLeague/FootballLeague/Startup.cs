@@ -29,7 +29,9 @@ namespace FootballLeague
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             env.ConfigureEnvironment(app);
+            app.UseValidationExceptionHandler();
             app.AddMiddleware();
+
         }
     }
 }

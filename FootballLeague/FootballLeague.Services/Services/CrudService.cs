@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FootballLeague.Data.Exceptions;
+using FootballLeague.Data.Exception;
 using FootballLeague.Data.Repositories.Contracts;
 using FootballLeague.Data.Utils;
 using FootballLeague.Models;
